@@ -4,6 +4,7 @@ import Link from "next/link"
 
 const HomeProperties = () => {
   const recentProperties = properties.sort(() => Math.random() - Math.random()).slice(0, 3)
+  // console.log(recentProperties)
   return (
     <>
       <section className="px-4 py-6">
@@ -15,7 +16,7 @@ const HomeProperties = () => {
             {recentProperties === 0 ? (
               <p>No properties found</p>
             ) : (
-              recentProperties.map((p) => <PropertyCard key={p.id} property={p} />)
+              recentProperties.map((p) => <PropertyCard key={p._id} property={p} />)
             )}
           </div>
         </div>
