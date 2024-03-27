@@ -165,7 +165,6 @@
     "updatedAt": "2024-01-04T00:00:00.000Z"
   },
   {
-    "_id": "5",
     "owner": "3",
     "name": "Modern Downtown Studio",
     "type": "Studio",
