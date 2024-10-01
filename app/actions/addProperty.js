@@ -1,5 +1,12 @@
 'use server'
+import connectDB from "@/config/database";
+import Property from "@/models/Property";
+import { getSessionUser } from "@/utils/getSessionUser";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
 async function addProperty(formData) {
+    await connectDB();
     // access amenities and images
     const amenities = formData.getAll('amenities');
     const images = formData
