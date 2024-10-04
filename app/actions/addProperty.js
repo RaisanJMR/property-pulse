@@ -13,12 +13,14 @@ async function addProperty(formData) {
     if (!sessionUser || !sessionUser.userId) {
         throw new Error('User ID is required')
     }
+    const { userId } = sessionUser;
     const amenities = formData.getAll('amenities');
     const images = formData
-    .getAll('images')
-    .filter((image) => image.name !== '')
-    .map((image) => image.name)
+        .getAll('images')
+        .filter((image) => image.name !== '')
+        .map((image) => image.name)
     const propertyData = {
+        owner: userId,
         type: formData.get('type'),
         name: formData.get('name'),
         description: formData.get('description'),
@@ -45,5 +47,9 @@ async function addProperty(formData) {
         images
     }
     console.log(propertyData)
+    const newProperty = new Property(propertyData);
+    await newProperty.save();
+    revalidatePath('/', 'layout');
+    redirect(`/properties/${newProperty._id}`);
 }
 export default addProperty;
