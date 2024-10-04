@@ -5,9 +5,14 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+
 async function addProperty(formData) {
     await connectDB();
     // access amenities and images
+    const sessionUser = await getSessionUser();
+    if (!sessionUser || !sessionUser.userId) {
+        throw new Error('User ID is required')
+    }
     const amenities = formData.getAll('amenities');
     const images = formData
     .getAll('images')
