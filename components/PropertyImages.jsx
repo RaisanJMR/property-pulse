@@ -11,6 +11,8 @@ const PropertyImages = ({ images }) => {
             alt=''
             className='object-cover h-[400px] mx-auto rounded-xl'
             priority={true}
+            width={1000}
+            height={600}
           />
         ) : (
           <div className='grid grid-cols-2 gap-4'>
